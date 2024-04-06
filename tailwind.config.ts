@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     fontSize: {
       "heading1-bold": [
-        "50px",
+        "60px",
         {
           lineHeight: "100%",
           fontWeight: "700",
