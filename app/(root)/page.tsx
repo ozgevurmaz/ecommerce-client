@@ -1,12 +1,11 @@
-import BannerCarousel from "@/components/home/banner";
-import Image from "next/image";
+import BannerCarousel from "@/components/banner";
+import Collections from "@/components/Collections";
 
 export default function Home() {
   return (
     <main>
-      
-        <BannerCarousel />
-     
+      <BannerCarousel />
+      <Collections />
     </main>
   );
 }

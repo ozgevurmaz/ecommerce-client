@@ -11,78 +11,79 @@ const config: Config = {
       "heading1-bold": [
         "60px",
         {
+          
           lineHeight: "100%",
-          fontWeight: "700",
+          fontWeight: "500",
         },
       ],
       "heading2-bold": [
-        "30px",
+        "50px",
         {
           lineHeight: "100%",
-          fontWeight: "700",
+          fontWeight: "500",
         },
       ],
       "heading3-bold": [
-        "24px",
+        "30px",
         {
           lineHeight: "100%",
-          fontWeight: "700",
+          fontWeight: "500",
         },
       ],
       "heading4-bold": [
-        "20px",
+        "24px",
         {
           lineHeight: "100%",
-          fontWeight: "700",
+          fontWeight: "500",
         },
       ],
       "body-bold": [
         "18px",
         {
           lineHeight: "100%",
-          fontWeight: "700",
+          fontWeight: "500",
         },
       ],
       "body-semibold": [
         "18px",
         {
           lineHeight: "100%",
-          fontWeight: "600",
+          fontWeight: "400",
         },
       ],
       "body-medium": [
         "18px",
         {
           lineHeight: "100%",
-          fontWeight: "500",
+          fontWeight: "300",
         },
       ],
       "base-bold": [
         "16px",
         {
           lineHeight: "100%",
-          fontWeight: "600",
+          fontWeight: "400",
         },
       ],
       "base-medium": [
         "16px",
         {
           lineHeight: "100%",
-          fontWeight: "500",
+          fontWeight: "300",
         },
       ],
       "small-bold": [
         "14px",
         {
           lineHeight: "140%",
-          fontWeight: "700",
+          fontWeight: "500",
         },
       ],
       "small-medium": [
         "14px",
         {
           lineHeight: "140%",
-          fontWeight: "500",
+          fontWeight: "300",
         },
       ],
     },
