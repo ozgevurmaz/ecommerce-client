@@ -67,7 +67,7 @@ const Navbar = () => {
             </div>
           </Link>
           {
-            user ? <SignOutButton afterSignOutUrl="/"/> : <SignInButton />
+            user ? <SignOutButton /> : <SignInButton />
           }
         </div>
       )}

@@ -3,7 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../components/ui/button";
 
+
 const Collections = async () => {
+
   const collections = await getCollections();
 
   return (
@@ -15,7 +17,7 @@ const Collections = async () => {
       </p>
 
       <div className="grid lg:grid-cols-2 w-[90%] xl:w-[70%] gap-3">
-        {collections.slice(0, 4).map((collection: CollectionType) => (
+        {collections && collections.slice(0, 4).map((collection: CollectionType) => (
           <Link
             key={collection._id}
             href={`/collections/${collection._id}`}

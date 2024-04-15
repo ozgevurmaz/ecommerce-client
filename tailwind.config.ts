@@ -11,7 +11,6 @@ const config: Config = {
       "heading1-bold": [
         "60px",
         {
-          
           lineHeight: "100%",
           fontWeight: "500",
         },
@@ -32,6 +31,13 @@ const config: Config = {
       ],
       "heading4-bold": [
         "24px",
+        {
+          lineHeight: "100%",
+          fontWeight: "500",
+        },
+      ],
+      "heading5-bold": [
+        "20px",
         {
           lineHeight: "100%",
           fontWeight: "500",
