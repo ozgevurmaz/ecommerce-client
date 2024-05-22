@@ -15,7 +15,7 @@ export const POST = async (req: NextRequest) => {
     const user = await User.findOne({ clerkId: userId });
 
     if (!user) {
-      return new NextResponse("User not found", { status: 400 });
+      return new NextResponse("User not found", { status: 404 });
     }
 
     const { productId } = await req.json();
@@ -27,7 +27,7 @@ export const POST = async (req: NextRequest) => {
     const isLiked = user.wishlist.includes(productId);
 
     if (isLiked) {
-      user.wishlist = user.wishlist.filter((id: string) => id !== productId); // dislike product
+      user.wishlist = user.wishlist.filter((id: string) => id !== productId); // disliked product 
     } else {
       user.wishlist.push(productId); // like product
     }

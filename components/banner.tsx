@@ -35,7 +35,7 @@ const BannerCarousel = () => {
                   {banner.header}
                 </h1>
                 <p className="text-base-medium mt-5">{banner.paragraph}</p>
-                <Button className="rounded-xl bg-black text-white px-5 mt-10">
+                <Button className="px-5 mt-8" variant={"primary"}>
                   Expore Now
                 </Button>
               </div>

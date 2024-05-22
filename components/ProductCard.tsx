@@ -1,86 +1,47 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import AddToWishlist from "./AddToWishlist";
+import StarRates from "./StarRates";
 import { Button } from "./ui/button";
-import { Heart } from "lucide-react";
-import { useUser } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
 
 const ProductCard = ({ product }: { product: ProductType }) => {
-  const router = useRouter();
-  const { user } = useUser();
 
-  const [loading, setLoading] = useState(false);
-  const [signedInUser, setSignInUser] = useState<UserType | null>(null);
-  const [isLike, setIsLike] = useState(false);
-
-  const getUser = async () => {
-    try {
-      setLoading(true);
-      const res = await fetch("/api/users");
-      const data = await res.json();
-      setSignInUser(data);
-      setIsLike(data.wishlist.includes(product._id));
-      setLoading(false);
-    } catch (error) {
-      console.log("[users_GET]", error);
-    }
-  };
-
-  useEffect(() => {
-    if (user) {
-      getUser();
-    }
-  }, [user]);
-
-  const handleLike = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    e.preventDefault();
-
-    try {
-      if (!user) {
-        router.push("/sign-in");
-        return;
-      } else {
-        setLoading(true);
-        const res = await fetch("/api/users/wishlist", {
-          method: "POST",
-          body: JSON.stringify({ productId: product._id }),
-        });
-        const updatedUser = await res.json();
-        setSignInUser(updatedUser);
-        setIsLike(updatedUser.wishlist.includes(product._id));
-        setLoading(false);
-      }
-    } catch (error) {
-      console.log("[wishlist_POST]", error);
-    }
-  };
+  const [isHover, setIsHover] = useState<boolean>(false);
 
   return (
     <Link
       href={`/products/${product._id}`}
-      className="p-4 border rounded-lg shadow-lg space-y-3"
+      className="rounded-lg shadow-lg hover:scale-105 "
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
     >
-      <Image
-        src={product.media[0]}
-        alt="product"
-        width={250}
-        height={300}
-        className="h-[250px] rounded-lg object-contain hover:scale-105 transition-all duration-400"
-      />
-      <h5 className="text-heading5-bold">{product.title}</h5>
-      <p>${product.price}</p>
-      <div className="flexBetween">
-        <Button className="bg-black text-white rounded-full">
+      <div className="relative">
+        <Image
+          src={product.media[0]}
+          alt="product"
+          width={260}
+          height={300}
+          className="h-[330px] rounded-lg object-cover "
+        />
+        <Button
+          variant="primary"
+          className={`w-full z-20 absolute bottom-3 ${isHover ? "" : "hidden"}`}
+        >
           Add To Card
         </Button>
-        <Button onClick={handleLike} className="shadow-none">
-          <Heart className="text-red-600" fill={isLike ? "red" : "white"} />
-        </Button>
+      </div>
+      <div className="p-2">
+        <p className="text-body-bold">{product.title}</p>
+        <p className="text-small-medium text-gray-700">{product.category}</p>
+
+        <StarRates />
+        <div className="flexBetween">
+          <p className="text-body-bold">${product.price}</p>
+          <AddToWishlist id={product._id} />
+        </div>
       </div>
     </Link>
   );

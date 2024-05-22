@@ -1,4 +1,4 @@
-import { getCollections } from "@/lib/actions";
+import { getCollections } from "@/lib/actions/actions";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../components/ui/button";
@@ -26,7 +26,7 @@ const Collections = async () => {
             <div className="p-12">
               <h4 className="text-heading4-bold">{collection.title}</h4>
               <p className="text-small-medium mt-2">{collection.description}</p>
-              <Button className="mt-2 rounded-full bg-white">Explore Now</Button>
+              <Button className="mt-2" variant={"secondary"}>Explore Now</Button>
             </div>
        
               <div className="w-full h-full relative ">

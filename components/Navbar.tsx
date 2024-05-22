@@ -33,7 +33,7 @@ const Navbar = () => {
             height={70}
           />
         </Link>
-        <Button onClick={() => setMobilMenu(!mobilMenu)}>
+        <Button onClick={() => setMobilMenu(!mobilMenu)} variant={"icon"}>
           <MenuIcon />
         </Button>
       </div>
