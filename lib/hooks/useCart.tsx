@@ -2,20 +2,14 @@ import { create } from "zustand";
 import { toast } from "react-hot-toast";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-interface CartItem {
-  item: ProductType;
-  quantity: number;
-  color?: string;
-  size?: string;
-}
-
 interface CartStore {
   cartItems: CartItem[];
   addItem: (item: CartItem) => void;
   removeItem: (_id: String) => void;
   increaseQuantity: (idToInc: String) => void;
   decreaseQuantity: (idToDec: String) => void;
-  clearQuantity: () => void;
+  updateQuantity: (idToUpdate: string, newQuantity: number) => void;
+  clearCart: () => void;
 }
 
 const useCart = create(
@@ -25,14 +19,22 @@ const useCart = create(
       addItem: (data: CartItem) => {
         const { item, quantity, color, size } = data;
         const currentItems = get().cartItems;
-        const isExisting = currentItems.find(
+        const existingItemIndex = currentItems.findIndex(
           (cartItem) => cartItem.item._id === item._id
         );
-        if (isExisting) {
-          return toast("Item already in cart");
+        if (existingItemIndex !== -1) {
+          // Item already exists in the cart
+          const updatedItems = [...currentItems];
+          updatedItems[existingItemIndex].quantity += quantity;
+          set({ cartItems: updatedItems });
+          toast.success("Quantity updated in cart");
+        } else {
+          // Item does not exist
+          set({
+            cartItems: [...currentItems, { item, quantity, color, size }],
+          });
+          toast.success("Item added to cart");
         }
-        set({ cartItems: [...currentItems, { item, quantity, color, size }] });
-        toast.success("Item added to cart");
       },
       removeItem: (_id: String) => {
         const newCartItems = get().cartItems.filter(
@@ -54,6 +56,15 @@ const useCart = create(
         const newCartItems = get().cartItems.map((cartItem) => {
           if (cartItem.item._id === idToDec) {
             return { ...cartItem, quantity: cartItem.quantity - 1 };
+          }
+          return cartItem;
+        });
+        set({ cartItems: newCartItems });
+      },
+      updateQuantity: (idToUpdate: string, newQuantity: number) => {
+        const newCartItems = get().cartItems.map((cartItem) => {
+          if (cartItem.item._id === idToUpdate) {
+            return { ...cartItem, quantity: newQuantity };
           }
           return cartItem;
         });

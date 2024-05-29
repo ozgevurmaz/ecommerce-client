@@ -27,3 +27,10 @@ type CollectionType = {
     createdAt: string;
     updatedAt: string;
   }
+
+  type CartItem = {
+    item: ProductType;
+    quantity: number;
+    color?: string;
+    size?: string;
+  }

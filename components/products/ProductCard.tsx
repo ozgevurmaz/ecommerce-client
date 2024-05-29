@@ -3,9 +3,9 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import Image from "next/image";
-import AddToWishlist from "./AddToWishlist";
-import StarRates from "./StarRates";
-import { Button } from "./ui/button";
+import AddToWishlist from "../functionalUi/AddToWishlist";
+import StarRates from "../functionalUi/StarRates";
+import { Button } from "../ui/button";
 
 const ProductCard = ({ product }: { product: ProductType }) => {
 

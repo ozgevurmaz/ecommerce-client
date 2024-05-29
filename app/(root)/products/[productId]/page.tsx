@@ -1,5 +1,5 @@
-import Gallery from "@/components/Gallery";
-import ProductInfo from "@/components/ProductInfo";
+import Gallery from "@/components/products/Gallery";
+import ProductInfo from "@/components/products/ProductInfo";
 import { getProductDetails } from "@/lib/actions/actions";
 
 const ProductDetail = async ({ params }: { params: { productId: string } }) => {

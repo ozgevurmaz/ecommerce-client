@@ -14,13 +14,23 @@ import {
 } from "@/components/ui/navigation-menu";
 
 import { ShoppingBag, MenuIcon, CircleUserIcon } from "lucide-react";
-import { UserButton, useUser, SignInButton, SignOutButton } from "@clerk/nextjs";
+import {
+  UserButton,
+  useUser,
+  SignInButton,
+  SignOutButton,
+} from "@clerk/nextjs";
 import { Button } from "../components/ui/button";
 import Image from "next/image";
+import CartItems from "./cart/cartItems";
+import useCart from "@/lib/hooks/useCart";
+import HoverCart from "./cart/hoverCart";
 
 const Navbar = () => {
   const { user } = useUser();
   const [mobilMenu, setMobilMenu] = React.useState(false);
+
+  const Cart = useCart();
 
   return (
     <div>
@@ -39,7 +49,6 @@ const Navbar = () => {
       </div>
       {mobilMenu && (
         <div className="absolute top-12 right-5 flex flex-col gap-4 p-3 rounded-lg border bg-white text-base-bold lg:hidden z-10">
-          
           <Link href="/" className="hover:text-red-1">
             Home
           </Link>
@@ -66,12 +75,9 @@ const Navbar = () => {
               </span>
             </div>
           </Link>
-          {
-            user ? <SignOutButton /> : <SignInButton />
-          }
+          {user ? <SignOutButton /> : <SignInButton />}
         </div>
       )}
-
 
       <div className="hidden md:flexBetween sticky top-0 z-10 bg-white px-10 py-6">
         <Link href="/">
@@ -96,7 +102,7 @@ const Navbar = () => {
             <NavigationMenuItem>
               <NavigationMenuLink
                 id="shopMenu"
-                href="/cart"
+                href="/collections"
                 className="flexCenter hover:scale-110 hover:text-orange"
               >
                 <NavigationMenuTrigger>Collections</NavigationMenuTrigger>
@@ -109,7 +115,7 @@ const Navbar = () => {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink
-                href="/"
+                href="/sale"
                 className="hover:scale-110 hover:text-orange"
               >
                 Sale
@@ -127,12 +133,16 @@ const Navbar = () => {
                     <div className="relative">
                       <ShoppingBag size={26} />
                       <div className="absolute top-[-5px] right-[-7px] bg-orange  px-1 rounded-full">
-                        <p className="text-small-medium text-white">0</p>
+                        <p className="text-small-medium text-white">
+                          {Cart.cartItems.length}
+                        </p>
                       </div>
                     </div>
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="w-[300px] h-[90vh] bg-white p-3">Cart</div>
+                    <div className="w-[300px] bg-gray-200 p-3">
+                      <HoverCart />
+                    </div>
                   </NavigationMenuContent>
                 </NavigationMenuLink>
               </NavigationMenuItem>
@@ -160,7 +170,7 @@ const Navbar = () => {
               ) : (
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                    href="/sign-in "
+                    href="/sign-in"
                     className="hover:scale-110 text-gray-700"
                   >
                     <CircleUserIcon size={30} />

@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import StarRates from "@/components/StarRates";
+import StarRates from "@/components/functionalUi/StarRates";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Heart, MinusCircle, PlusCircle } from "lucide-react";
-import AddToWishlist from "./AddToWishlist";
+import AddToWishlist from "@/components/functionalUi/AddToWishlist";
 
 import useCart from "@/lib/hooks/useCart";
+import Quantity from "@/components/functionalUi/Quantity";
+import toast from "react-hot-toast";
 
 const ProductInfo = ({ productDetails }: { productDetails: ProductType }) => {
   console.log(productDetails.sizes);
@@ -18,21 +19,11 @@ const ProductInfo = ({ productDetails }: { productDetails: ProductType }) => {
   const [selectedSize, setSelectedSize] = useState<string>(
     `${productDetails.sizes.length === 1 ? productDetails.sizes[0] : ""}`
   );
-  const [quantity, setQuantity] = useState<number>(1);
 
-  const increaseQuantity = () => {
-    if (quantity === 99) {
-      // Change 99 with stock quantity
-      setQuantity(99);
-    } else {
-      setQuantity(quantity + 1);
-    }
-  };
+  const [quantity, setQuantity] = useState(1);
 
-  const decreaseQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
+  const handleQuantityChange = (quantity: number) => {
+    setQuantity(quantity);
   };
 
   const cart = useCart();
@@ -98,42 +89,20 @@ const ProductInfo = ({ productDetails }: { productDetails: ProductType }) => {
       </div>
 
       <p className="text-body-bold">Quantity:</p>
-      <div className="flexStart gap-3">
-        <MinusCircle
-          className="hover:text-red-500 cursor-pointer"
-          onClick={() => decreaseQuantity()}
-        />
-
-        <input
-          type="number"
-          value={quantity}
-          className="w-[30px] text-center"
-          onChange={(e) => {
-            const value = e.target.value;
-            if (/^\d{0,2}$/.test(value)) {
-              // only integer values
-              setQuantity(Number(value));
-            }
-          }}
-        />
-
-        <PlusCircle
-          className="hover:text-red-500 cursor-pointer"
-          onClick={() => increaseQuantity()}
-        />
-      </div>
+      <Quantity onQuantityChange={handleQuantityChange} />
 
       <Button
         variant={"secondary"}
         className="w-full bg-orange text-white"
-        onClick={() =>
-          cart.addItem({
-            item: productDetails,
-            quantity: quantity,
-            color: selectedColor,
-            size: selectedSize,
-          })
-        }
+        onClick={() => {
+          if (selectedSize)
+            cart.addItem({
+              item: productDetails,
+              quantity: quantity,
+              color: selectedColor,
+              size: selectedSize,
+            });
+        }}
       >
         Add To Card
       </Button>

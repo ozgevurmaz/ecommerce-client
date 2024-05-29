@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 const Gallery = ({ media }: { media: string[] }) => {
   const [mainMediaIndex, setMainMediaIndex] = useState(0);

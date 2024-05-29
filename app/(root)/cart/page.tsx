@@ -1,11 +1,13 @@
-import React from 'react'
+"use client";
+
+import CartItems from "@/components/cart/cartItems";
 
 const Cart = () => {
   return (
-    <div>
-      
+    <div className="flex justify-center">
+      <CartItems />
     </div>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;

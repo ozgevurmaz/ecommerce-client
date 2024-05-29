@@ -9,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import Autoplay from "embla-carousel-autoplay";
 
 import { bannerInfos } from "@/lib/constants";

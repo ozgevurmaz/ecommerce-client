@@ -15,6 +15,7 @@ const buttonVariants = cva(
         secondary:
           "bg-white text-black rounded-full hover:bg-black hover:text-white",
         icon: "shadow-none p-1 rounded-full",
+        small: "p-0 h-min"
       },
     },
     defaultVariants: {
