@@ -39,7 +39,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
 
         <StarRates />
         <div className="flexBetween">
-          <p className="text-body-bold">${product.price}</p>
+          <p className="text-body-bold">€{product.price}</p>
           <AddToWishlist id={product._id} />
         </div>
       </div>

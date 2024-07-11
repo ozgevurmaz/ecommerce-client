@@ -22,7 +22,6 @@ import {
 } from "@clerk/nextjs";
 import { Button } from "../components/ui/button";
 import Image from "next/image";
-import CartItems from "./cart/cartItems";
 import useCart from "@/lib/hooks/useCart";
 import HoverCart from "./cart/hoverCart";
 
@@ -43,9 +42,22 @@ const Navbar = () => {
             height={70}
           />
         </Link>
-        <Button onClick={() => setMobilMenu(!mobilMenu)} variant={"icon"}>
-          <MenuIcon />
-        </Button>
+        <div className="flex gap-2">
+          <Link
+            href="/cart"
+            className="flex items-center gap-3 rounded-lg px-2 py-1 hover:bg-black hover:text-white"
+          >
+            <div className="relative">
+              <ShoppingBag />
+              <span className="absolute top-[-9px] right-[-9px] bg-orange text-white px-1 rounded-full">
+                {Cart.cartItems.length}
+              </span>
+            </div>
+          </Link>
+          <Button onClick={() => setMobilMenu(!mobilMenu)} variant={"icon"}>
+            <MenuIcon />
+          </Button>
+        </div>
       </div>
       {mobilMenu && (
         <div className="absolute top-12 right-5 flex flex-col gap-4 p-3 rounded-lg border bg-white text-base-bold lg:hidden z-10">
@@ -64,17 +76,7 @@ const Navbar = () => {
           >
             Orders
           </Link>
-          <Link
-            href="/cart"
-            className="flex items-center gap-3 rounded-lg px-2 py-1 hover:bg-black hover:text-white"
-          >
-            <div className="relative">
-              Cart
-              <span className="absolute top-[-5px] bg-orange text-white px-1 rounded-full">
-                0
-              </span>
-            </div>
-          </Link>
+
           {user ? <SignOutButton /> : <SignInButton />}
         </div>
       )}
@@ -129,7 +131,7 @@ const Navbar = () => {
             <div className="relative flexCenter gap-3">
               <NavigationMenuItem>
                 <NavigationMenuLink href="/cart" className="hover:scale-110">
-                  <NavigationMenuTrigger>
+                  <NavigationMenuTrigger arrowNone >
                     <div className="relative">
                       <ShoppingBag size={26} />
                       <div className="absolute top-[-5px] right-[-7px] bg-orange  px-1 rounded-full">

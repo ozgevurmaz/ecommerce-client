@@ -8,7 +8,7 @@ const ProductList = async () => {
     <div className="w-[80%] mx-auto my-12">
       <h3 className="text-heading3-bold text-center">New Arrivals</h3>
       <p className="text-small-medium my-2 text-center">
-        Find the new items in Stylie that you don't want to take it off.
+        Find the new items in Stylie that you do not want to take it off.
       </p>
       <div className="flexCenter gap-2 lg:gap-5 max-md:flex-col">
         {products &&

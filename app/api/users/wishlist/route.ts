@@ -6,10 +6,10 @@ import { NextRequest, NextResponse } from "next/server";
 export const POST = async (req: NextRequest) => {
   try {
     const { userId } = auth();
+
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
-
     await connectToDB();
 
     const user = await User.findOne({ clerkId: userId });
@@ -19,7 +19,7 @@ export const POST = async (req: NextRequest) => {
     }
 
     const { productId } = await req.json();
-    
+
     if (!productId) {
       return new NextResponse("Product id is required", { status: 400 });
     }
@@ -27,14 +27,14 @@ export const POST = async (req: NextRequest) => {
     const isLiked = user.wishlist.includes(productId);
 
     if (isLiked) {
-      user.wishlist = user.wishlist.filter((id: string) => id !== productId); // disliked product 
+      user.wishlist = user.wishlist.filter((id: string) => id !== productId); // disliked product
     } else {
       user.wishlist.push(productId); // like product
     }
 
     await user.save();
 
-    return NextResponse.json(user, { status: 200 });
+    return new NextResponse(JSON.stringify(user), { status: 200 });
   } catch (error) {
     console.log("[wishlist_POST]", error);
     return new NextResponse("Internal Server Error", { status: 500 });

@@ -43,7 +43,7 @@ const ProductInfo = ({ productDetails }: { productDetails: ProductType }) => {
         <p className="text-base-bold">{productDetails.category}</p>
       </div>
 
-      <p className="text-heading3-bold">${productDetails.price}</p>
+      <p className="text-heading3-bold">€{productDetails.price}</p>
 
       <Separator className="my-4 bg-gray-300 mt-4" />
 

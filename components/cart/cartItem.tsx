@@ -33,7 +33,7 @@ const CartItem: React.FC<CartItemProps> = ({
   const cart = useCart();
 
   return (
-    <div className="w-full flexBetween gap-2 lg:gap-12">
+    <div className="w-full flexAround gap-3 lg:gap-12">
       <img
         src={productInfo.media[0]}
         alt={productInfo.title}
@@ -41,14 +41,14 @@ const CartItem: React.FC<CartItemProps> = ({
         height={300}
         className="w-20 h-20 lg:w-32 lg:h-32 object-cover"
       />
-      <div className="flex flex-col gap-1 md:gap-12 md:flex-row">
-        {size && <p className="text-body-small">Size: {size}</p>}
-        {color && <p className="text-body-small">Color: {color}</p>}
+      <div className="flexCenter flex-col gap-1 md:gap-12 md:flex-row">
+        {size && <p className="text-small-bold md:text-body-small">Size: {size}</p>}
+        {color && <p className="text-small-bold md:text-body-small">Color: {color}</p>}
         <Quantity
           onQuantityChange={handleQuantityChange}
           quantityCount={quantity}
         />
-        <p className="text-body-bold">${productInfo.price}</p>
+        <p className="text-body-bold">€{productInfo.price}</p>
       </div>
 
       <Button
