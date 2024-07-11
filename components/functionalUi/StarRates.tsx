@@ -1,27 +1,25 @@
-import React from "react";
-
 import { StarHalf, Star } from "lucide-react";
 
-const StarRates = () => {
+const Rating = () => {
+  const rating = 3.5;
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 !== 0;
+
   return (
-    <div className="flex items-center text-small-medium">
-      <div className="relative">
-        <div className="flex gap-[1px]">
-          {Array.from({ length: 5 }, () => (
-            <Star fill="#111" strokeWidth={0} size={"14px"} />
-          ))}
-        </div>
-        <div className="flex gap-[1px] absolute top-0">
-          <Star fill="yellow" strokeWidth={0} size={"14px"} />
-          <Star fill="yellow" strokeWidth={0} size={"14px"} />
-          <Star fill="yellow" strokeWidth={0} size={"14px"} />
-          <Star fill="yellow" strokeWidth={0} size={"14px"} />
-          <StarHalf fill="yellow" strokeWidth={0} size={"14px"} />
-        </div>
+    <div className="relative flex items-center">
+      <div className="flex gap-[1px]">
+        {Array.from({ length: 5 }, (_, index) => (
+          <Star key={index} fill="#111" strokeWidth={0} />
+        ))}
       </div>
-      (4.7)
+      <div className="flex gap-[1px] absolute top-0">
+        {Array.from({ length: fullStars }, (_, index) => (
+          <Star key={index} fill="yellow" strokeWidth={0} />
+        ))}
+        {hasHalfStar && <StarHalf fill="yellow" strokeWidth={0} />}
+      </div>
     </div>
   );
 };
 
-export default StarRates;
+export default Rating;

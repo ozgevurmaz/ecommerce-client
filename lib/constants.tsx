@@ -1,11 +1,11 @@
 export const bannerInfos = [
     {
-        header: "Mission Modern Stylei",
+        header: "Mission Modern Stylie",
         paragraph: "introduction the new collections",
         url: "/banner/1.png"
     },
     {
-        header: "Explore Autumn Stylei",
+        header: "Explore Autumn Stylie",
         paragraph: "deck out this Autumn",
         url: "/banner/3.png"
     },
