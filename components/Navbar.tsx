@@ -131,7 +131,7 @@ const Navbar = () => {
             <div className="relative flexCenter gap-3">
               <NavigationMenuItem>
                 <NavigationMenuLink href="/cart" className="hover:scale-110">
-                  <NavigationMenuTrigger arrowNone >
+                  <NavigationMenuTrigger  >
                     <div className="relative">
                       <ShoppingBag size={26} />
                       <div className="absolute top-[-5px] right-[-7px] bg-orange  px-1 rounded-full">
