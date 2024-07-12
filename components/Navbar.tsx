@@ -126,7 +126,7 @@ const Navbar = () => {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <NavigationMenu place="right">
+        <NavigationMenu >
           <NavigationMenuList>
             <div className="relative flexCenter gap-3">
               <NavigationMenuItem>
