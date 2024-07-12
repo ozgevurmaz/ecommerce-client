@@ -91,7 +91,7 @@ const Navbar = () => {
           />
         </Link>
 
-        <NavigationMenu place="left">
+        <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuLink
