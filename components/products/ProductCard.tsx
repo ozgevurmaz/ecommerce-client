@@ -33,14 +33,14 @@ const ProductCard = ({ product }: { product: ProductType }) => {
           Add To Card
         </Button>
       </div>
-      <div className="p-2">
+      <div className="p-2 h-[140px] ">
         <p className="text-body-bold">{product.title}</p>
         <p className="text-small-medium text-gray-700">{product.category}</p>
 
         <StarRates/>
-        <div className="flexBetween">
+        <div className="flexBetween z-10">
           <p className="text-body-bold">€{product.price}</p>
-          <AddToWishlist id={product._id} />
+          <AddToWishlist product={product} />
         </div>
       </div>
     </Link>

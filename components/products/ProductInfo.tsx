@@ -35,7 +35,7 @@ const ProductInfo = ({ productDetails }: { productDetails: ProductType }) => {
           <h3 className="text-heading3-bold">{productDetails.title}</h3>
           <StarRates />
         </div>
-        <AddToWishlist id={productDetails._id} />
+        <AddToWishlist product={productDetails} />
       </div>
 
       <div className="flexStart gap-3">

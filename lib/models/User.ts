@@ -3,9 +3,6 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
   clerkId: String,
   wishlist: { type: Array, default: [] },
-  email: { type: String, default: [] },
-  address: { type: String, default: [] },
-  phone: { type: String, default: [] },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });

@@ -1,33 +1,47 @@
 "use client";
-import { Button } from "../ui/button";
+
 import { Heart } from "lucide-react";
+
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
+import { Button } from "../ui/button";
 
-const AddToWishlist = ({ id }: { id: string }) => {
+interface AddToWishlistProps {
+  product: ProductType;
+}
+
+const AddToWishlist = ({ product }: AddToWishlistProps) => {
   const router = useRouter();
   const { user } = useUser();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [signedInUser, setSignInUser] = useState<UserType | null>(null);
   const [isLike, setIsLike] = useState(false);
+  const [signedInUser, setSignedInUser] = useState<UserType | null>(null);
 
   const getUser = async () => {
+
     try {
       setIsLoading(true);
-      const res = await fetch("/api/users");
+      console.log("0")
+      const res = await fetch("/api/users", {
+        method: "GET",
+      });
+      console.log("1")
       const data = await res.json();
-      setSignInUser(data);
-      setIsLike(data.wishlist.includes(id));
+      console.log("2")
+      setSignedInUser(data);
+      setIsLike(data.wishlist.includes(product._id));
       setIsLoading(false);
     } catch (error) {
       console.log("[users_GET]", error);
     }
   };
+  console.log(signedInUser)
 
   useEffect(() => {
-    if (user) {
+    if (user || !signedInUser) {
+      console.log("getuser")
       getUser();
     }
   }, [user]);
@@ -42,15 +56,13 @@ const AddToWishlist = ({ id }: { id: string }) => {
         router.push("/sign-in");
         return;
       } else {
-        setIsLoading(true);
         const res = await fetch("/api/users/wishlist", {
           method: "POST",
-          body: JSON.stringify({ productId: id }),
+          body: JSON.stringify({ productId: product._id }),
         });
         const updatedUser = await res.json();
-        setSignInUser(updatedUser);
-        setIsLike(updatedUser.wishlist.includes(id));
-        setIsLoading(false);
+        setSignedInUser(updatedUser);
+        setIsLike(updatedUser.wishlist.includes(product._id));
       }
     } catch (error) {
       console.log("[wishlist_POST]", error);
@@ -58,7 +70,7 @@ const AddToWishlist = ({ id }: { id: string }) => {
   };
 
   return (
-    <Button onClick={handleLike} variant={"icon"}>
+    <Button onClick={handleLike}>
       <Heart className="text-red-600" fill={isLike ? "red" : "white"} />
     </Button>
   );

@@ -10,10 +10,18 @@ const ProductList = async () => {
       <p className="text-small-medium my-2 text-center">
         Find the new items in Stylie that you do not want to take it off.
       </p>
-      <div className="flexCenter gap-2 lg:gap-5 max-md:flex-col">
+      <div className="flexCenter gap-2 lg:hidden max-md:flex-col">
         {products &&
           products
             .slice(0, 4)
+            .map((product: ProductType) => (
+              <ProductCard key={product._id} product={product} />
+            ))}
+      </div>
+      <div className="hidden lg:flexCenter gap-2 lg:gap-3 max-md:flex-col">
+        {products &&
+          products
+            .slice(0, 5)
             .map((product: ProductType) => (
               <ProductCard key={product._id} product={product} />
             ))}
