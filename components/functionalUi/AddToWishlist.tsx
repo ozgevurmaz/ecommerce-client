@@ -37,7 +37,6 @@ const AddToWishlist = ({ product }: AddToWishlistProps) => {
       console.log("[users_GET]", error);
     }
   };
-  console.log(signedInUser)
 
   useEffect(() => {
     if (user || !signedInUser) {

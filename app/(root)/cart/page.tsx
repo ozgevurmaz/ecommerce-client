@@ -31,16 +31,18 @@ const Cart = () => {
       if (!user) {
         router.push("sign-in");
       } else {
+        console.log("1");
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            cartItems: JSON.stringify({ cartItems: Cart.cartItems, customer }),
-          }),
+          body: JSON.stringify({ cartItems: Cart.cartItems, customer }),
         });
+
+        console.log(res);
         const data = await res.json();
+        console.log(data);
         window.location.href = data.url;
         console.log(data);
       }
@@ -48,6 +50,8 @@ const Cart = () => {
       console.log("[CHECKOUT_POST]", err);
     }
   };
+  console.log(Cart.cartItems);
+  console.log(customer.clerkId);
 
   return (
     <div className="flex justify-center">
