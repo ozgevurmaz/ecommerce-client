@@ -15,9 +15,6 @@ export const GET = async (req: NextRequest) => {
     }
 
     await connectToDB();
-
-    console.log("db connection succeeded");
-
     let user = await User.findOne({ clerkId: userId });
 
     // When the user sign-in for first time, immediately we create a new user

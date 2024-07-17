@@ -19,7 +19,6 @@ const CartItem: React.FC<CartItemProps> = ({
   quantity,
   size,
   color,
-  cartPage,
 }) => {
   const [quantityCount, setQuantityCount] = useState<number>(quantity);
   const handleQuantityChange = (quantity: number) => {

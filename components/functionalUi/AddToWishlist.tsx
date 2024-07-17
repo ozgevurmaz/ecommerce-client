@@ -23,13 +23,10 @@ const AddToWishlist = ({ product }: AddToWishlistProps) => {
 
     try {
       setIsLoading(true);
-      console.log("0")
       const res = await fetch("/api/users", {
         method: "GET",
       });
-      console.log("1")
       const data = await res.json();
-      console.log("2")
       setSignedInUser(data);
       setIsLike(data.wishlist.includes(product._id));
       setIsLoading(false);
@@ -40,7 +37,6 @@ const AddToWishlist = ({ product }: AddToWishlistProps) => {
 
   useEffect(() => {
     if (user || !signedInUser) {
-      console.log("getuser")
       getUser();
     }
   }, [user]);

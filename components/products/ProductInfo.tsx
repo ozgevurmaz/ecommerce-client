@@ -11,8 +11,6 @@ import Quantity from "@/components/functionalUi/Quantity";
 import toast from "react-hot-toast";
 
 const ProductInfo = ({ productDetails }: { productDetails: ProductType }) => {
-  console.log(productDetails.sizes);
-
   const [selectedColor, setSelectedColor] = useState<string>(
     `${productDetails.colors.length === 1 ? productDetails.colors[0] : ""}`
   );
@@ -70,24 +68,24 @@ const ProductInfo = ({ productDetails }: { productDetails: ProductType }) => {
           </div>
         </div>
       )}
-
-      <div className="flex flex-col gap-2">
-        <p className="text-base-medium text-gray-500">Sizes</p>
-        <div className="flex gap-2">
-          {productDetails.sizes.map((size, index) => (
-            <p
-              className={`border border-black px-2 py-1 rounded-lg cursor-pointer ${
-                size === selectedSize ? "bg-slate-300" : ""
-              }`}
-              key={index}
-              onClick={() => setSelectedSize(size)}
-            >
-              {size}
-            </p>
-          ))}
+      {productDetails.sizes.length > 0 && (
+        <div className="flex flex-col gap-2">
+          <p className="text-base-medium text-gray-500">Sizes</p>
+          <div className="flex gap-2">
+            {productDetails.sizes.map((size, index) => (
+              <p
+                className={`border border-black px-2 py-1 rounded-lg cursor-pointer ${
+                  size === selectedSize ? "bg-slate-300" : ""
+                }`}
+                key={index}
+                onClick={() => setSelectedSize(size)}
+              >
+                {size}
+              </p>
+            ))}
+          </div>
         </div>
-      </div>
-
+      )}
       <p className="text-body-bold">Quantity:</p>
       <Quantity onQuantityChange={handleQuantityChange} />
 
