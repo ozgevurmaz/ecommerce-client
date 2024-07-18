@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root>
->(({ place, className, children, ...props }, ref) => (
+>(({  className, children, ...props }, ref) => (
   <NavigationMenuPrimitive.Root
     ref={ref}
     className={cn(
@@ -18,7 +18,7 @@ const NavigationMenu = React.forwardRef<
     {...props}
   >
     {children}
-    <NavigationMenuViewport place={place} />
+    <NavigationMenuViewport />
   </NavigationMenuPrimitive.Root>
 ));
 NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName;
@@ -86,7 +86,6 @@ const NavigationMenuViewport = React.forwardRef<
   <div
     className={cn(
       "absolute right-0 top-full flex justify-center",
-      place && (place === "right" ? "right-0" : "left-0")
     )}
   >
     <NavigationMenuPrimitive.Viewport
