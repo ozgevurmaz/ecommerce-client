@@ -1,5 +1,5 @@
 # E-commerce Store
-
+[live demo](https://ecommerce-store-three-taupe.vercel.app/)
 ## Description
 A responsive e-commerce website built with Next.js, Tailwind CSS, MongoDB, Clerk, Stripe, ShadCN UI, and TypeScript. Users can browse products, add them to their cart, and make purchases.
 

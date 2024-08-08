@@ -14,9 +14,9 @@ const Rating = () => {
       </div>
       <div className="flex gap-[1px] absolute top-0">
         {Array.from({ length: fullStars }, (_, index) => (
-          <Star key={index} fill="yellow" strokeWidth={0} />
+          <Star key={index} fill="orange" strokeWidth={0} />
         ))}
-        {hasHalfStar && <StarHalf fill="yellow" strokeWidth={0} />}
+        {hasHalfStar && <StarHalf fill="orange" strokeWidth={0} />}
       </div>
     </div>
   );
