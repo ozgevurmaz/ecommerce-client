@@ -18,7 +18,7 @@ const BannerCarousel = () => {
   const plugin = React.useRef(
     Autoplay({ delay: 2500, stopOnInteraction: true })
   );
-
+  
   return (
     <div className="w-full h-[600] bg-gray-300 flexCenter">
       <Carousel
@@ -35,9 +35,6 @@ const BannerCarousel = () => {
                   {banner.header}
                 </h1>
                 <p className="text-base-medium mt-5">{banner.paragraph}</p>
-                <Button className="px-5 mt-8" variant={"primary"}>
-                  Expore Now
-                </Button>
               </div>
               <Image src={banner.url} width={600} height={600} alt="banner" className="hover:scale-105 transition-all duration-400 flex z-[-10] opacity-50 md:opacity-100" />
             </CarouselItem>

@@ -34,3 +34,20 @@ type CollectionType = {
     color?: string;
     size?: string;
   }
+
+  type OrderType = {
+    shippingAddress: Object;
+    _id: string;
+    customerClerkId: string;
+    products: [OrderItemType]
+    shippingRate: string;
+    totalAmount: number
+  }
+  
+  type OrderItemType = {
+    product: ProductType;
+    color: string;
+    size: string;
+    quantity: number;
+    _id: string;
+  }

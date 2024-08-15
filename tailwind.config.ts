@@ -68,7 +68,7 @@ const config: Config = {
         "16px",
         {
           lineHeight: "100%",
-          fontWeight: "400",
+          fontWeight: "500",
         },
       ],
       "base-medium": [

@@ -1,5 +1,6 @@
 const header = {
   "Cache-Control": "no-cache",
+  "Content-Type": "application",
 };
 
 export const getCollections = async () => {
@@ -44,11 +45,10 @@ export const getProducts = async () => {
 
 export const getProductDetails = async (productId: string) => {
   try {
-    const productDetails = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/products/${productId}`,
-      { headers: header }
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/products/${productId}`
     );
-    return await productDetails.json();
+    return await res.json();
   } catch (err) {
     console.log("FETCH_PRODUCT_DETAILS", err);
   }
@@ -62,5 +62,16 @@ export const getSearchResults = async (query: string) => {
     return await res.json();
   } catch (error) {
     console.log("[FETCH_SEARCH_RESULTS]", error);
+  }
+};
+
+export const getOrders = async (userId: string) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/orders/customers/${userId}`
+    );
+    return await res.json();
+  } catch (error) {
+    console.log("[FETCH_ORDERS]", error);
   }
 };
