@@ -18,7 +18,7 @@ const HoverCart = () => {
   const totalRounded = parseFloat(total.toFixed(2));
 
   return (
-    <div>
+    <div className="max-sm:hidden">
       <h5 className="text-heading5-bold">Cart</h5>
       <hr />
       {Cart.cartItems.length === 0 ? (
@@ -30,7 +30,7 @@ const HoverCart = () => {
           {Cart.cartItems.map((item) => (
             <div
               key={item.item._id}
-              className="w-full flex max-sm:flex-col max-sm:gap-3 hover:bg-grey-1 px-4 py-3 items-center max-sm:items-start justify-between"
+              className="w-full flex gap-3 hover:bg-grey-1 px-4 py-3 items-center max-sm:items-start justify-between"
             >
               <img
                 src={item.item.media[0]}
@@ -40,7 +40,7 @@ const HoverCart = () => {
                 className="w-16 h-16 object-cover"
               />
               <div>
-                <p className="text-body-bold text-black mb-2">Price</p>
+                <p className="text-body-bold text-black mb-2">{item.item.title}</p>
                 <p className="text-body-medium">${item.item.price}</p>
               </div>
               <Button

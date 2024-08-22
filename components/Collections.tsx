@@ -9,7 +9,7 @@ const Collections = async () => {
   return (
     <div className=" my-12 flexCenter flex-col w-[80%] mx-auto">
       <h3 className="text-heading3-bold">Collections</h3>
-      <p className="text-small-medium my-2">
+      <p className="text-small-medium my-2 text-center  ">
         Upgrade your style with our curated sets. Choose confidence, embrace
         your unique look.
       </p>
@@ -48,3 +48,4 @@ const Collections = async () => {
 };
 
 export default Collections;
+export const dynamic = "force-dynamic"; 

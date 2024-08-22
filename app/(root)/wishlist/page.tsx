@@ -68,3 +68,4 @@ const Wishlist = () => {
 };
 
 export default Wishlist;
+export const dynamic = "force-dynamic";

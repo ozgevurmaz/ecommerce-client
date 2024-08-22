@@ -8,7 +8,7 @@ const CollectionDetails = async ({
   params: { collectionId: string };
 }) => {
   const collectionDetails = await getCollectionDetails(params.collectionId);
-
+console.log(collectionDetails)
   return (
     <div className="px-10 py-5 text-grey flexCenter flex-col gap-5">
       <img
@@ -23,7 +23,7 @@ const CollectionDetails = async ({
         {collectionDetails.description}
       </p>
       <div className="flex flex-wrap justify-start gap-10">
-        {collectionDetails.products.map((product: ProductType) => (
+        {collectionDetails.products.length > 0 && collectionDetails.products.map((product: ProductType) => (
           <ProductCard key={product._id} product={product} />
         ))}
       </div>

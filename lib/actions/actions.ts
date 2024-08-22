@@ -6,8 +6,7 @@ const header = {
 export const getCollections = async () => {
   try {
     const collections = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/collections`,
-      { headers: header }
+      `${process.env.NEXT_PUBLIC_API_URL}/collections`
     );
     return await collections.json();
   } catch (err) {
@@ -54,10 +53,23 @@ export const getProductDetails = async (productId: string) => {
   }
 };
 
+export const getRelatedProducts = async (productId: string) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/products/${productId}/related`,
+      { headers: header }
+    );
+    return await res.json();
+  } catch (err) {
+    console.log("RELATED_PRODUCTS", err);
+  }
+};
+
 export const getSearchResults = async (query: string) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/search/${query}`
+      `${process.env.NEXT_PUBLIC_API_URL}/search/${query}`,
+      { headers: header }
     );
     return await res.json();
   } catch (error) {
@@ -68,7 +80,8 @@ export const getSearchResults = async (query: string) => {
 export const getOrders = async (userId: string) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/orders/customers/${userId}`
+      `${process.env.NEXT_PUBLIC_API_URL}/orders/customers/${userId}`,
+      { headers: header }
     );
     return await res.json();
   } catch (error) {
