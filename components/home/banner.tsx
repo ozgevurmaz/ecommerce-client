@@ -31,8 +31,7 @@ const BannerCarousel = () => {
   useEffect(() => {
     getCollectionsInfo();
   }, []);
-  console.log(collections)
-
+  
   return loading ? (
     <Loader />
   ) : (
