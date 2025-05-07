@@ -1,7 +1,9 @@
 type CollectionType = {
     _id: string;
     title: string;
+    slug: string;
     description: string;
+    season: string;
     image: string;
     products: ProductType[];
   };
@@ -10,14 +12,16 @@ type CollectionType = {
     _id: string;
     title: string;
     description: string;
-    media: [string];
-    category: string;
-    collections: [CollectionType];
-    tags: [string];
-    sizes: [string];
-    colors: [string];
-    price: number;
+    media: string[];
+    category: CategoryType;
+    collections: CollectionType[];
+    tags: string[];
+    sizes: string[];
+    colors: string[];
     expense: number;
+    price: number;
+    prices: Record<string, number>;
+    stock: Record<string, number>;
   };
   
   type UserType = {
@@ -51,3 +55,15 @@ type CollectionType = {
     quantity: number;
     _id: string;
   }
+
+  type CategoryType = {
+    _id: string;
+    title: string;
+    slug: string;
+    description: string;
+    image: string;
+    isActive: boolean;
+    products: string[];
+    createdAt: string;
+    updatedAt: string;
+  };

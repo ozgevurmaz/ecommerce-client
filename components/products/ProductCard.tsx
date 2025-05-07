@@ -10,7 +10,7 @@ import { Button } from "../ui/button";
 const ProductCard = ({ product }: { product: ProductType }) => {
 
   const [isHover, setIsHover] = useState<boolean>(false);
-
+console.log(product)
   return (
     <Link
       href={`/products/${product._id}`}
