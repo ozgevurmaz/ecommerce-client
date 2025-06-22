@@ -34,26 +34,30 @@ const Footer = () => {
     };
 
     return (
-        <footer className="border-t border-gray-200">
-            <div className="bg-gray-300 py-10">
-                <div className="container mx-auto px-4 md:px-10">
-                    <div className="text-center max-w-2xl mx-auto">
-                        <h3 className="text-xl md:text-2xl font-semibold text-grey mb-2">Join Our Newsletter</h3>
-                        <p className="text-grey/80 mb-6">
+        <footer className="border-y border-border bg-background">
+            {/* Newsletter Section */}
+            <div className="py-12 md:py-16">
+                <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+                    <div className="text-center max-w-2xl mx-auto space-y-4">
+                        <h3 className="text-heading3-bold text-foreground">
+                            Join Our Newsletter
+                        </h3>
+                        <p className="text-base-medium text-muted-foreground leading-relaxed">
                             Subscribe to receive updates, access to exclusive deals, and more.
                         </p>
-                        <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row max-w-md mx-auto">
+                        <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
                             <input
                                 type="email"
                                 placeholder="Your email address"
                                 required
-                                className="rounded-l-full border-grey/20 focus-visible:ring-orange pl-3"
+                                className="flex-1 px-4 py-3 rounded-l-full sm:rounded-r-none rounded-r-full bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-300 text-foreground placeholder:text-muted-foreground"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                             <Button
                                 type="submit"
-                                className="bg-orange hover:bg-orange/90 text-white rounded-r-full"
+                                variant="secondary"
+                                className="h-auto bg-primary hover:bg-primary/90 text-primary-foreground rounded-r-full sm:rounded-l-none rounded-l-full px-8 py-3 text-base-bold transition-all duration-300 hover:scale-[1.02]"
                             >
                                 Subscribe
                             </Button>
@@ -63,58 +67,74 @@ const Footer = () => {
             </div>
 
             {/* Main Footer Content */}
-            <div className="bg-white py-10">
-                <div className="container mx-auto px-4 md:px-10">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-muted py-12 md:py-16">
+                <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
                         {/* Brand Column */}
-                        <div className="flex flex-col">
-                            <Link href="/" className="mb-6">
+                        <div className="lg:col-span-1">
+                            <Link href="/" className="inline-block mb-6">
                                 <Image
                                     src="/StylieLogo.png"
-                                    alt="StylieLogo"
+                                    alt="Stylie Logo"
                                     width={150}
                                     height={70}
-                                    style={{ height: "auto" }}
+                                    className="h-auto"
                                 />
                             </Link>
-                            <p className="text-grey/80 mb-6">
+                            <p className="text-base-medium text-muted-foreground mb-6 leading-relaxed">
                                 Discover modern and sophisticated fashion for the contemporary woman. From clothing to accessories, find your personal style with Stylie.
                             </p>
-                            <div className="flex space-x-3 mb-6">
-                                <a href="/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                                    <div className="w-9 h-9 rounded-full bg-nude hover:bg-orange transition-colors duration-300 flexCenter text-grey hover:text-white">
-                                        <Instagram size={18} />
-                                    </div>
+                            <div className="flex space-x-3">
+                                <a 
+                                    href="https://instagram.com" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    aria-label="Follow us on Instagram"
+                                    className="w-10 h-10 rounded-full bg-muted hover:bg-primary transition-all duration-300 flex items-center justify-center text-muted-foreground hover:text-primary-foreground group hover:scale-110"
+                                >
+                                    <Instagram size={18} />
                                 </a>
-                                <a href="/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                                    <div className="w-9 h-9 rounded-full bg-nude hover:bg-orange transition-colors duration-300 flexCenter text-grey hover:text-white">
-                                        <Facebook size={18} />
-                                    </div>
+                                <a 
+                                    href="https://facebook.com" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    aria-label="Follow us on Facebook"
+                                    className="w-10 h-10 rounded-full bg-muted hover:bg-primary transition-all duration-300 flex items-center justify-center text-muted-foreground hover:text-primary-foreground group hover:scale-110"
+                                >
+                                    <Facebook size={18} />
                                 </a>
-                                <a href="/" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                                    <div className="w-9 h-9 rounded-full bg-nude hover:bg-orange transition-colors duration-300 flexCenter text-grey hover:text-white">
-                                        <Twitter size={18} />
-                                    </div>
+                                <a 
+                                    href="https://twitter.com" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    aria-label="Follow us on Twitter"
+                                    className="w-10 h-10 rounded-full bg-muted hover:bg-primary transition-all duration-300 flex items-center justify-center text-muted-foreground hover:text-primary-foreground group hover:scale-110"
+                                >
+                                    <Twitter size={18} />
                                 </a>
-                                <a href="/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-                                    <div className="w-9 h-9 rounded-full bg-nude hover:bg-orange transition-colors duration-300 flexCenter text-grey hover:text-white">
-                                        <Youtube size={18} />
-                                    </div>
+                                <a 
+                                    href="https://youtube.com" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    aria-label="Watch us on YouTube"
+                                    className="w-10 h-10 rounded-full bg-muted hover:bg-primary transition-all duration-300 flex items-center justify-center text-muted-foreground hover:text-primary-foreground group hover:scale-110"
+                                >
+                                    <Youtube size={18} />
                                 </a>
                             </div>
                         </div>
 
                         {/* Shop Links */}
                         <div>
-                            <h3 className="text-lg font-semibold mb-4 text-grey">
-                                <span className="border-b-2 border-orange pb-1">Shop</span>
+                            <h3 className="text-body-bold text-foreground mb-6 relative">
+                                <span className="border-b-2 border-primary pb-1">Shop</span>
                             </h3>
                             <ul className="space-y-3">
                                 {categories.map((category) => (
                                     <li key={category.name}>
                                         <Link
                                             href={category.href}
-                                            className="text-grey/80 hover:text-orange transition-colors duration-200"
+                                            className="text-base-medium text-muted-foreground hover:text-primary transition-colors duration-300"
                                         >
                                             {category.name}
                                         </Link>
@@ -125,32 +145,34 @@ const Footer = () => {
 
                         {/* Quick Links */}
                         <div>
-                            <h3 className="text-lg font-semibold mb-4 text-grey">
-                                <span className="border-b-2 border-orange pb-1">My Account</span>
+                            <h3 className="text-body-bold text-foreground mb-6 relative">
+                                <span className="border-b-2 border-primary pb-1">My Account</span>
                             </h3>
-                            <ul className="space-y-3">
+                            <ul className="space-y-3 mb-8">
                                 {quickLinks.map((link) => (
                                     <li key={link.name}>
                                         <Link
                                             href={link.href}
-                                            className="text-grey/80 hover:text-orange transition-colors duration-200 flex items-center"
+                                            className="text-base-medium text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center group"
                                         >
-                                            <span className="mr-2 text-orange">{link.icon}</span>
+                                            <span className="mr-2 text-primary group-hover:scale-110 transition-transform duration-300">
+                                                {link.icon}
+                                            </span>
                                             {link.name}
                                         </Link>
                                     </li>
                                 ))}
                             </ul>
 
-                            <h3 className="text-lg font-semibold mt-8 mb-4 text-grey">
-                                <span className="border-b-2 border-orange pb-1">Help</span>
+                            <h3 className="text-body-bold text-foreground mb-6 relative">
+                                <span className="border-b-2 border-primary pb-1">Help</span>
                             </h3>
                             <ul className="space-y-3">
                                 {helpLinks.map((link) => (
                                     <li key={link.name}>
                                         <Link
-                                            href="/"
-                                            className="text-grey/80 hover:text-orange transition-colors duration-200"
+                                            href={link.href}
+                                            className="text-base-medium text-muted-foreground hover:text-primary transition-colors duration-300"
                                         >
                                             {link.name}
                                         </Link>
@@ -161,23 +183,45 @@ const Footer = () => {
 
                         {/* Contact Info */}
                         <div>
-                            <h3 className="text-lg font-semibold mb-4 text-grey">
-                                <span className="border-b-2 border-orange pb-1">Contact Us</span>
+                            <h3 className="text-body-bold text-foreground mb-6 relative">
+                                <span className="border-b-2 border-primary pb-1">Contact Us</span>
                             </h3>
                             <div className="space-y-4">
-                                <div className="flex items-start">
-                                    <MapPin className="mr-3 h-5 w-5 text-orange flex-shrink-0 mt-1" />
-                                    <p className="text-grey/80">Fashion Avenue, Style District</p>
+                                <div className="flex items-start group">
+                                    <MapPin className="mr-3 h-5 w-5 text-primary flex-shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300" />
+                                    <p className="text-base-medium text-muted-foreground">
+                                        Fashion Avenue, Style District<br />
+                                        New York, NY 10001
+                                    </p>
                                 </div>
-                                <div className="flex items-center">
-                                    <Phone className="mr-3 h-5 w-5 text-orange flex-shrink-0" />
-                                    <p className="text-grey/80">+1 (111) 111-1111</p>
+                                <div className="flex items-center group">
+                                    <Phone className="mr-3 h-5 w-5 text-primary flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                                    <a 
+                                        href="tel:+11111111111" 
+                                        className="text-base-medium text-muted-foreground hover:text-primary transition-colors duration-300"
+                                    >
+                                        +1 (111) 111-1111
+                                    </a>
                                 </div>
-                                <div className="flex items-center">
-                                    <Mail className="mr-3 h-5 w-5 text-orange flex-shrink-0" />
-                                    <p className="text-grey/80">contact@stylie.com</p>
+                                <div className="flex items-center group">
+                                    <Mail className="mr-3 h-5 w-5 text-primary flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                                    <a 
+                                        href="mailto:contact@stylie.com" 
+                                        className="text-base-medium text-muted-foreground hover:text-primary transition-colors duration-300"
+                                    >
+                                        contact@stylie.com
+                                    </a>
                                 </div>
+                            </div>
 
+                            {/* Store Hours */}
+                            <div className="mt-8">
+                                <h4 className="text-base-bold text-foreground mb-3">Store Hours</h4>
+                                <div className="space-y-1 text-small-medium text-muted-foreground">
+                                    <p>Monday - Friday: 9:00 AM - 8:00 PM</p>
+                                    <p>Saturday: 10:00 AM - 6:00 PM</p>
+                                    <p>Sunday: 12:00 PM - 5:00 PM</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -185,19 +229,28 @@ const Footer = () => {
             </div>
 
             {/* Bottom Bar */}
-            <div className="bg-grey py-4">
-                <div className="container mx-auto px-4 md:px-10 flex flex-col md:flex-row justify-between items-center">
-                    <p className="text-sm text-white/80 mb-2 md:mb-0">
+            <div className="bg-card border-t border-border py-6">
+                <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+                    <p className="text-small-medium text-muted-foreground mb-4 md:mb-0">
                         © {new Date().getFullYear()} Stylie. All rights reserved.
                     </p>
-                    <div className="flex items-center space-x-4 md:space-x-6">
-                        <Link href="/privacy-policy" className="text-sm text-white/80 hover:text-white">
+                    <div className="flex items-center space-x-6">
+                        <Link 
+                            href="/privacy-policy" 
+                            className="text-small-medium text-muted-foreground hover:text-primary transition-colors duration-300"
+                        >
                             Privacy Policy
                         </Link>
-                        <Link href="/terms-of-service" className="text-sm text-white/80 hover:text-white">
+                        <Link 
+                            href="/terms-of-service" 
+                            className="text-small-medium text-muted-foreground hover:text-primary transition-colors duration-300"
+                        >
                             Terms of Service
                         </Link>
-                        <Link href="/cookie-policy" className="text-sm text-white/80 hover:text-white">
+                        <Link 
+                            href="/cookie-policy" 
+                            className="text-small-medium text-muted-foreground hover:text-primary transition-colors duration-300"
+                        >
                             Cookie Policy
                         </Link>
                     </div>

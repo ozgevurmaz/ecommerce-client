@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 import {
   Carousel,
@@ -21,9 +21,9 @@ import Loader from "../Loader";
 
 const BannerCarousel = () => {
   const autoplayRef = useRef(
-    Autoplay({ delay: 4000, stopOnInteraction: true })
+    Autoplay({ delay: 5000, stopOnInteraction: true })
   );
-  
+
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [collections, setCollections] = useState<CollectionType[]>([]);
   const [loading, setLoading] = useState(true);
@@ -47,20 +47,29 @@ const BannerCarousel = () => {
     api.on("select", () => {
       setActiveIndex(api.selectedScrollSnap());
     });
-    
+
     setActiveIndex(api.selectedScrollSnap());
   }, [api]);
 
-  // Animation variants
-  const textVariants = {
-    hidden: { opacity: 0, y: 20 },
+  // Animation variants with proper typing
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        staggerChildren: 0.2,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        staggerChildren: 0.2
-      }
+      transition: { duration: 0.8, ease: "easeOut" }
     }
   };
 
@@ -68,21 +77,24 @@ const BannerCarousel = () => {
     if (!collections || collections.length === 0) return null;
 
     return (
-      <div className="flex justify-center gap-2 mt-4">
-        {collections.map((_, index) => (
-          <button
-            key={index}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              activeIndex === index ? "bg-orange w-6" : "bg-gray-300"
-            }`}
-            onClick={() => {
-              if (api) {
-                api.scrollTo(index);
-                setActiveIndex(index);
-              }
-            }}
-          />
-        ))}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30">
+        <div className="flex items-center gap-2 bg-background/30 backdrop-blur-sm rounded-full px-4 py-2 border border-border/20">
+          {collections.map((_, index) => (
+            <button
+              key={index}
+              className={`h-1.5 rounded-full transition-all duration-500 hover:scale-125 ${activeIndex === index
+                ? "bg-primary w-4"
+                : "bg-muted-foreground/40 w-1.5 hover:bg-muted-foreground/60"
+                }`}
+              onClick={() => {
+                if (api) {
+                  api.scrollTo(index);
+                  setActiveIndex(index);
+                }
+              }}
+            />
+          ))}
+        </div>
       </div>
     );
   };
@@ -90,9 +102,9 @@ const BannerCarousel = () => {
   return loading ? (
     <Loader />
   ) : (
-    <div className="w-full relative">
+    <div className="w-full relative bg-background">
       <Carousel
-        className="w-full max-w-screen-xl mx-auto"
+        className="w-full"
         setApi={setApi}
         plugins={[autoplayRef.current]}
         onMouseEnter={() => {
@@ -120,64 +132,71 @@ const BannerCarousel = () => {
         <CarouselContent>
           {collections && collections.length > 0 &&
             collections.map((collection, index) => (
-              <CarouselItem key={collection._id} className="h-[500px] md:h-[500px] lg:h-[600px]">
-                <div className="relative h-full w-full">
+              <CarouselItem key={collection._id}>
+                <div className="relative h-[60vh] md:h-[70vh] lg:h-[80vh] w-full overflow-hidden">
+                  {/* Image with subtle overlay */}
                   <div className="absolute inset-0">
-                    <div className="absolute inset-0 bg-black/5 md:bg-transparent z-10" />
                     <Image
                       src={collection.image}
                       fill
                       alt={collection.title}
-                      className="object-cover transition-transform duration-400 flex z-[-10] opacity-70 md:opacity-100"
+                      className="object-cover transition-transform duration-[2000ms] hover:scale-[1.02]"
                       priority={index === 0}
                     />
+                    {/* Gradient overlay for text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
                   </div>
 
                   {/* Content */}
-                  <div className="relative h-full w-full flex flex-col md:flex-row">
+                  <div className="relative h-full flex items-center">
+                    <div className="bg-foreground opacity-20 w-full h-full absolute" />
                     {index === activeIndex && (
                       <motion.div
-                        className="relative z-20 w-full md:w-1/2 flex flex-col justify-center px-6 md:px-16 py-12"
+                        className="relative z-20 max-w-2xl mx-auto px-8 md:px-16 lg:px-24"
+                        variants={containerVariants}
                         initial="hidden"
                         animate="visible"
-                        variants={textVariants}
                       >
-                        <motion.div variants={textVariants} className="mb-2">
-                          <span className="inline-block px-4 py-1 bg-orange/10 text-orange text-sm font-medium rounded-full mb-4">
+                        <motion.div variants={itemVariants} className="mb-6">
+                          <span className="inline-flex items-center scale-90 md:scale-100 px-4 py-2 bg-card/90 backdrop-blur-sm text-card-foreground text-small-medium rounded-full border border-border/20 shadow-sm">
                             {collection.season || "New Collection"}
                           </span>
                         </motion.div>
 
                         <motion.h1
-                          variants={textVariants}
-                          className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-4"
+                          variants={itemVariants}
+                          className="text-heading2-bold md:text-heading1-bold text-background leading-[1.1] mb-6 tracking-tight"
                         >
                           {collection.title}
                         </motion.h1>
 
                         <motion.p
-                          variants={textVariants}
-                          className="text-base md:text-lg text-gray-700 mb-8 max-w-md"
+                          variants={itemVariants}
+                          className="text-small-medium md:text-body-medium text-muted mb-10 max-w-lg leading-relaxed"
                         >
                           {collection.description}
                         </motion.p>
 
-                        <motion.div variants={textVariants} className="flex flex-col sm:flex-row gap-4">
+                        <motion.div
+                          variants={itemVariants}
+                          className="flex flex-col sm:flex-row gap-4 items-center"
+                        >
                           <Button
                             asChild
-                            className="bg-orange hover:bg-orange/90 text-white border-none px-8 py-3 rounded-full text-base font-medium"
+                            className="max-w-min bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 lg:px-8 lg:py-6 text-small-bold md:text-base-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border-0"
                           >
                             <Link href={`/collection/${collection.slug}`}>
-                              Shop Now
+                              Shop Collection
                             </Link>
                           </Button>
 
                           <Button
                             asChild
-                            className="border border-gray-300 hover:border-orange hover:text-orange text-gray-700 px-8 py-3 rounded-full text-base font-medium bg-white/80"
+                            className="max-w-min bg-background/80 backdrop-blur-sm text-foreground border-border hover:bg-background hover:text-foreground px-4 py-2 lg:px-8 lg:py-6 text-small-bold md:text-base-bold rounded-full transition-all duration-300 hover:scale-[1.02]"
                           >
                             <Link href="/collections">
-                              Explore All
+                              View All Collections
                             </Link>
                           </Button>
                         </motion.div>
@@ -189,17 +208,15 @@ const BannerCarousel = () => {
             ))}
         </CarouselContent>
 
-        {/* Custom carousel controls */}
-        <div className="absolute left-4 top-1/2 -translate-y-1/2 z-20">
-          <CarouselPrevious className="h-10 w-10 rounded-full bg-white/70 hover:bg-white text-gray-800 border-none shadow-md" />
+        {/* Navigation arrows */}
+        <div className="absolute left-16 top-1/2 -translate-y-1/2 z-30">
+          <CarouselPrevious className="w-8 h-8 lg:h-12 lg:w-12 rounded-full bg-background/30 text-foreground border border-border/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-md" />
         </div>
-        <div className="absolute right-4 top-1/2 -translate-y-1/2 z-20">
-          <CarouselNext className="h-10 w-10 rounded-full bg-white/70 hover:bg-white text-gray-800 border-none shadow-md" />
+        <div className="absolute right-16 top-1/2 -translate-y-1/2 z-30">
+          <CarouselNext className="w-8 h-8 lg:h-12 lg:w-12 rounded-full bg-background/30 text-foreground border border-border/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-md" />
         </div>
 
-        <div className="absolute bottom-6 left-0 right-0">
-          {renderPaginationDots()}
-        </div>
+        {renderPaginationDots()}
       </Carousel>
     </div>
   );

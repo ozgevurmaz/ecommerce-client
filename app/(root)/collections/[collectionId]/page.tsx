@@ -8,7 +8,7 @@ const CollectionDetails = async ({
   params: { collectionId: string };
 }) => {
   const collectionDetails = await getCollectionDetails(params.collectionId);
-console.log(collectionDetails)
+
   return (
     <div className="px-10 py-5 text-grey flexCenter flex-col gap-5">
       <img

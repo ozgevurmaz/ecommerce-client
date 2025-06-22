@@ -27,7 +27,9 @@ export default function RootLayout({
           <ToastProvider />
           <div>
             <Navbar />
-            {children}
+            <main>
+              {children}
+            </main>
             <Footer />
           </div>
         </ClerkProvider>

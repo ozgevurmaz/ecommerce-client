@@ -65,9 +65,9 @@ const AddToWishlist = ({ product }: AddToWishlistProps) => {
   };
 
   return (
-    <Button onClick={handleLike}>
-      <Heart className="text-red-600" fill={isLike ? "red" : "white"} />
-    </Button>
+    <button className="bg-transparent hover:bg-transparent" onClick={handleLike}>
+      <Heart size={25} className="text-primary" fill={isLike ? "red" : "white"} />
+    </button>
   );
 };
 
