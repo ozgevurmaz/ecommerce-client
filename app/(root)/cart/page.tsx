@@ -57,7 +57,7 @@ const Cart = () => {
           {Cart.cartItems.length === 0 ? (
             <div className="flexCenter flex-col gap-9 px-12">
               <p>No items in the cart.</p>
-              <Button variant="primary" onClick={() => router.push("/")}>
+              <Button onClick={() => router.push("/")}>
                 Start Shopping
               </Button>
             </div>
