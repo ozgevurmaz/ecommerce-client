@@ -38,7 +38,7 @@ const ProductInfo = ({ productDetails }: { productDetails: ProductType }) => {
 
       <div className="flexStart gap-3">
         <p className="text-base-medium text-gray-500">Category</p>
-        <p className="text-base-bold">{productDetails.category}</p>
+        <p className="text-base-bold">{productDetails.category.title}</p>
       </div>
 
       <p className="text-heading3-bold">€{productDetails.price}</p>

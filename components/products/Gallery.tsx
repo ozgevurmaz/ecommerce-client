@@ -29,9 +29,11 @@ const Gallery = ({ media }: { media: string[] }) => {
     <div className="flex flex-col gap-3 max-w-[500px]">
       <div className="relative flexCenter">
         <Button
-          variant={"icon"}
-          className="z-5 absolute left-2 shadow-lg bg-white hover:text-orange"
+          size={"icon"}
+          className="z-5 absolute left-2 "
+          variant="secondary"
           onClick={handleBackClick}
+          disabled={media.length === 1}
         >
           <ChevronLeft size={"28px"} />
         </Button>
@@ -43,9 +45,11 @@ const Gallery = ({ media }: { media: string[] }) => {
           className="w-96 h-96 shadow-xl object-contain rounded-lg"
         />
         <Button
-          variant={"icon"}
-          className="z-5 absolute right-3 shadow-lg bg-white hover:text-orange"
+          size={"icon"}
+          className="z-5 absolute right-3"
+          variant="outline"
           onClick={handleForwardClick}
+          disabled={media.length === 1}
         >
           <ChevronRight size={"28px"} />
         </Button>

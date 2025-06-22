@@ -41,8 +41,8 @@ const Quantity: React.FC<QuantityProps> = ({
 
   return (
     <div className="flex items-center">
-      <Button disabled={quantity === 1} onClick={decreaseQuantity} variant="small">
-        <MinusCircle className="hover:text-red-500 cursor-pointer" />
+      <Button disabled={quantity === 1} onClick={decreaseQuantity}  variant="ghost" size="icon">
+        <MinusCircle className="hover:text-destructive cursor-pointer" />
       </Button>
 
       <input
@@ -52,8 +52,8 @@ const Quantity: React.FC<QuantityProps> = ({
         onChange={handleQuantityChange}
       />
 
-      <Button onClick={increaseQuantity} variant="small">
-        <PlusCircle className="hover:text-red-500 cursor-pointer" />
+      <Button onClick={increaseQuantity} variant="ghost" size="icon">
+        <PlusCircle className="hover:text-destructive cursor-pointer" />
       </Button>
     </div>
   );
